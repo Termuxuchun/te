@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Web App</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        h1 { color: #007bff; }
+        button { padding: 10px 20px; font-size: 18px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>👋 Web Appga Xush Kelibsiz!</h1>
+    <p>Bu Web App Telegram bilan integratsiyalangan.</p>
+    <button onclick="sendDataToBot()">📩 Botga Ma’lumot Yuborish</button>
+
+    <script>
+        let tg = window.Telegram.WebApp;
+        tg.expand(); // Ekranni to'liq ochish
+
+        function sendDataToBot() {
+            let userData = {
+                user_id: tg.initDataUnsafe.user.id,
+                first_name: tg.initDataUnsafe.user.first_name,
+                last_name: tg.initDataUnsafe.user.last_name,
+                language: tg.initDataUnsafe.user.language_code
+            };
+
+            tg.sendData(JSON.stringify(userData)); // Botga ma'lumot yuborish
+            alert("✅ Ma’lumot botga yuborildi!");
+        }
+    </script>
+</body>
+</html>
